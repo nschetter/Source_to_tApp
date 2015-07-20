@@ -1,16 +1,18 @@
-class Assignment
+class Report
   extend DatabaseClassMethods
   include DatabaseInstanceMethods
   
-  attr_accessor :id, :date, :name, :description, :blog_link, :github_link
+  attr_accessor :id, :gps_coordinates, :location, :description, :concerns, :help, :other, :picture
   
   def initialize(hash={})
     @id = hash["id"]
-    @date = hash["date"]
-    @name = hash["name"]
+    @gps_coordinates = hash["gps_coordinates"]
+    @location = hash["location"]
     @description = hash["description"]
-    @blog_link = hash["blog_link"]
-    @github_link = hash["github_link"]
+    @concerns = hash["concerns"]
+    @help = hash["help"]
+    @other = hash["other"]
+    @picture = hash["picture"]
   end #end initialize
   
   def add(options={})
@@ -18,7 +20,7 @@ class Assignment
   end
   
   def save
-    return true if DATABASE.execute("UPDATE #{table} SET name = '#{name}', date = '#{date}', description = '#{description}', blog_link = '#{blog_link}', github_link = '#{github_link}' WHERE id = #{@id};")
+    return true if DATABASE.execute("UPDATE #{table} SET gps_coordinates = '#{gps_coordinates}', location = '#{location}', description = '#{description}', concerns = '#{concerns}', help = '#{help}', other = '#{other}', picture = '#{picture}' WHERE id = #{@id};")
   end
   
 end
